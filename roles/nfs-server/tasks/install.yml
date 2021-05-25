@@ -1,0 +1,27 @@
+---
+- name: yum install nfs packages
+  yum:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - rpcbind
+    - nfs-utils
+
+- name: Copy exports file.
+  template:
+    src: exports.j2
+    dest: /etc/exports
+    owner: root
+    group: root
+    mode: 0644
+  notify: reload nfs
+
+- name: "start and enable nfs"
+  service:
+    name: "{{ item }}"
+    state: started
+    enabled: yes
+  with_items:
+    - rpcbind
+    - nfs
+

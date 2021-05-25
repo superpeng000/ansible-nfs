@@ -1,0 +1,14 @@
+---
+- name: create shared file
+  file:
+    path: "{{ mount_path }}/{{ shared_file }}"
+    state: directory
+
+- name: mount client
+#  shell: "mount -t nfs {{ share_ip }}:{{ shared_path }}/{{ shared_file }} {{ mount_path }}/{{ shared_file }}"
+  mount:
+    path: "{{ mount_path }}/{{ shared_file }}" 
+    src: "{{ share_ip }}:{{ shared_path }}/{{ shared_file }}"
+    fstype: nfs
+    opts: defaults
+    state: mounted

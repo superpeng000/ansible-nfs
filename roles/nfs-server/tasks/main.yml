@@ -1,0 +1,17 @@
+---
+- name: create shared file
+  file:
+    path: "{{ mount_path }}/{{ shared_file }}"
+    state: directory
+
+- name: mount server
+  mount:
+    path: "{{ mount_path }}/{{ shared_file }}"
+    src: "{{ mount_disk }}" 
+    fstype: ext4
+    opts: defaults
+    state: mounted
+
+- import_tasks: install.yml
+  notify:
+    - restart rpcbind and nfs

@@ -1,0 +1,9 @@
+---
+shared_path: "/mnt"
+mount_path: "{{ shared_path }}"
+
+shared_file: "nfs_file"
+share_ip_net: 192.168.12.0/24
+share_ip: 192.168.12.224
+
+mount_disk: "/dev/vdb1"

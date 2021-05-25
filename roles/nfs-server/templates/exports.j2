@@ -1,0 +1,7 @@
+# /etc/exports: the access control list for filesystems which may be exported
+#   to NFS clients.  See exports(5).
+#
+# Example for NFSv2 and NFSv3:
+# /srv/homes       hostname1(rw,sync,no_subtree_check) hostname2(ro,sync,no_subtree_check)
+
+{{ mount_path }}/{{ shared_file }}  {{ share_ip_net }}(rw,no_root_squash,no_all_squash,sync)
