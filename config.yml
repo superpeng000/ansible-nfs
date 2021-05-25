@@ -1,0 +1,18 @@
+---
+- hosts: server
+  gather_facts: true
+  tasks:
+    - name: install nfs-server
+      import_role: 
+        name: nfs-server
+      tags:
+        - nfs-server
+
+- hosts: client
+  gather_facts: true
+  tasks:
+    - name: install nfs-client
+      import_role:
+        name: nfs-client
+      tags:
+        - nfs-client
